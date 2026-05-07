@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">新闻聚合</string>
+    
+    <!-- News Related -->
+    <string name="news_tab_hot">热门</string>
+    <string name="news_tab_tech">科技</string>
+    <string name="news_tab_sports">体育</string>
+    <string name="news_tab_entertainment">娱乐</string>
+    <string name="news_search_hint">搜索新闻...</string>
+    <string name="news_refresh">刷新</string>
+    <string name="news_subscribe">订阅</string>
+    <string name="news_loading">加载中...</string>
+    <string name="news_no_data">暂无新闻</string>
+    
+    <!-- Auth Related -->
+    <string name="login_title">登录</string>
+    <string name="register_title">注册</string>
+    <string name="phone_number">手机号</string>
+    <string name="password">密码</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="nickname">昵称</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="forgot_password">忘记密码</string>
+    <string name="no_account">没有账号？</string>
+    <string name="has_account">已有账号？</string>
+    
+    <!-- Chat Related (Hidden) -->
+    <string name="chat_enter_code">输入解密字符</string>
+    <string name="chat_secret_code">解密字符</string>
+    <string name="chat_enter_hint">请输入预设的解锁字符...</string>
+    <string name="chat_unlock_success">解锁成功</string>
+    <string name="chat_unlock_failed">解锁失败</string>
+    <string name="chat_friends">好友</string>
+    <string name="chat_groups">群组</string>
+    <string name="chat_search_friends">搜索好友</string>
+    <string name="chat_send_message">发送消息</string>
+    <string name="chat_type_message">输入消息...</string>
+    <string name="chat_message_deleted">消息已删除</string>
+    <string name="chat_archive">归档</string>
+    <string name="chat_archived">已归档</string>
+    <string name="chat_delete">删除</string>
+    
+    <!-- Settings -->
+    <string name="settings_title">设置</string>
+    <string name="settings_disguise">伪装设置</string>
+    <string name="settings_auto_lock">自动锁定时间</string>
+    <string name="settings_notification_type">通知伪装类型</string>
+    <string name="settings_random_news">随机新闻</string>
+    <string name="settings_custom_notification">自定义通知</string>
+    <string name="settings_seconds">秒</string>
+    <string name="settings_save">保存</string>
+    <string name="settings_logout">退出登录</string>
+    
+    <!-- Notifications -->
+    <string name="notification_channel_chat">私密聊天</string>
+    <string name="notification_channel_news">新闻推送</string>
+    <string name="notification_title_news">最新新闻</string>
+    <string name="notification_title_breaking">突发新闻</string>
+    <string name="notification_title_update">新闻更新</string>
+    <string name="notification_content_template">您有一条新的%s消息</string>
+    
+    <!-- Errors -->
+    <string name="error_network">网络连接失败</string>
+    <string name="error_server">服务器错误</string>
+    <string name="error_invalid_phone">手机号格式错误</string>
+    <string name="error_password_length">密码至少6位</string>
+    <string name="error_password_mismatch">密码不一致</string>
+    <string name="error_login_failed">登录失败</string>
+    <string name="error_register_failed">注册失败</string>
+    
+    <!-- Success -->
+    <string name="success_register">注册成功</string>
+    <string name="success_save">保存成功</string>
+    <string name="success_logout">退出成功</string>
+</resources>

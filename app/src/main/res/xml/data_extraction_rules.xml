@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup-config>
+        <include domain="file" path="databases/" />
+        <include domain="file" path="shared-preferences/" />
+        <include domain="file" path="files/" />
+    </cloud-backup-config>
+    <device-data-extraction>
+        <include domain="file" path="databases/" />
+        <include domain="file" path="shared-preferences/" />
+        <include domain="file" path="files/" />
+    </device-data-extraction>
+</data-extraction-rules>
