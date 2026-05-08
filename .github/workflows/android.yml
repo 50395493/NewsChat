@@ -29,7 +29,7 @@ jobs:
         chmod +x ./gradlew
     
     - name: Build Android Project
-      run: bash ./gradlew assembleDebug
+      run: ./gradlew assembleDebug
     
     - name: Upload APK
       uses: actions/upload-artifact@v4
