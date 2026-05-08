@@ -1,13 +1,12 @@
 package com.stealthnews.chat.ui.news
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.stealthnews.chat.ui.news.fragment.TechNewsFragment
 import com.stealthnews.chat.ui.news.fragment.SportsNewsFragment
 import com.stealthnews.chat.ui.news.fragment.EntertainmentNewsFragment
 
-class NewsPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
+class NewsPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     
     private val fragments = listOf(
         TechNewsFragment(),
