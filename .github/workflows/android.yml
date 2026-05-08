@@ -24,7 +24,9 @@ jobs:
       uses: android-actions/setup-android@v2
     
     - name: Make Gradle wrapper executable
-      run: chmod +x ./gradlew
+      run: |
+        git update-index --chmod=+x gradlew
+        chmod +x ./gradlew
     
     - name: Build Android Project
       run: ./gradlew assembleDebug
