@@ -1,12 +1,12 @@
 package com.stealthnews.chat.ui.news
 
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.stealthnews.chat.ui.news.fragment.TechNewsFragment
 import com.stealthnews.chat.ui.news.fragment.SportsNewsFragment
 import com.stealthnews.chat.ui.news.fragment.EntertainmentNewsFragment
 
-class NewsPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+class NewsPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
     
     private val fragments = listOf(
         TechNewsFragment(),
@@ -16,5 +16,5 @@ class NewsPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int = fragments.size
 
-    override fun createFragment(position: Int): Fragment = fragments[position]
+    override fun createFragment(position: Int) = fragments[position]
 }
