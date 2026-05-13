@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.stealthnews.chat.databinding.ActivitySettingsBinding
 
 class SettingsActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivitySettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,17 +13,8 @@ class SettingsActivity : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupToolbar()
-        setupListeners()
-    }
-
-    private fun setupToolbar() {
         binding.toolbar.setNavigationOnClickListener {
             finish()
         }
-    }
-
-    private fun setupListeners() {
-        // TODO: 设置项点击事件
     }
 }

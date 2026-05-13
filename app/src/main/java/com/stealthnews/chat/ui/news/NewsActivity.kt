@@ -10,7 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.stealthnews.chat.R
 import com.stealthnews.chat.databinding.ActivityNewsBinding
-import com.stealthnews.chat.ui.login.LoginActivity
+import com.stealthnews.chat.ui.auth.LoginActivity
 import com.stealthnews.chat.ui.settings.SettingsActivity
 import com.stealthnews.chat.util.PreferenceManager
 import com.stealthnews.chat.util.SecurityManager

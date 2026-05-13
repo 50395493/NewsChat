@@ -1,5 +1,6 @@
 package com.stealthnews.chat.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,10 +18,10 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupUI()
+        setupListeners()
     }
 
-    private fun setupUI() {
+    private fun setupListeners() {
         binding.btnLogin.setOnClickListener {
             val phone = binding.etPhone.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
@@ -37,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
 
             // 模拟登录成功，保存状态
             PreferenceManager(this).setLoggedIn("user_001", phone, "用户")
-            Toast.makeText(this, getString(R.string.success_login), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
 
             startActivity(Intent(this, NewsActivity::class.java))
             finish()

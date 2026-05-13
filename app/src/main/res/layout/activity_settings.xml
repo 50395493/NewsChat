@@ -11,12 +11,14 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:navigationIcon="@drawable/ic_arrow_back"
-        app:title="Settings"/>
+        app:title="@string/settings_title"/>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Settings Content"
-        android:padding="16dp"/>
+        android:layout_height="match_parent"
+        android:text="设置页面"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@color/news_text_secondary"/>
 
 </LinearLayout>
