@@ -41,7 +41,7 @@ class NewsActivity : AppCompatActivity() {
     }
     
     private fun setupUI() {
-        // Setup toolbar (使用 MaterialToolbar 直接设置，不依赖 ActionBar)
+        // Setup toolbar
         binding.toolbar.title = getString(R.string.app_name)
         
         // Setup search functionality (used for chat activation)
@@ -53,8 +53,6 @@ class NewsActivity : AppCompatActivity() {
                         return true
                     }
                 }
-                // Normal news search
-                viewModel.searchNews(query ?: "")
                 return false
             }
             
@@ -63,24 +61,22 @@ class NewsActivity : AppCompatActivity() {
             }
         })
         
-        // Setup tabs
-        val categories = arrayOf(
-            getString(R.string.news_tab_hot),
-            getString(R.string.news_tab_tech),
-            getString(R.string.news_tab_sports),
-            getString(R.string.news_tab_entertainment)
-        )
-        
-        val adapter = NewsPagerAdapter(this, categories)
+        // Setup ViewPager with adapter
+        val adapter = NewsPagerAdapter(this)
         binding.viewPager.adapter = adapter
         
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = categories[position]
+            tab.text = when(position) {
+                0 -> getString(R.string.news_tab_tech)
+                1 -> getString(R.string.news_tab_sports)
+                2 -> getString(R.string.news_tab_entertainment)
+                else -> ""
+            }
         }.attach()
         
         // Setup refresh
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.refreshNews()
+            viewModel.loadNews()
             binding.swipeRefresh.isRefreshing = false
         }
         
@@ -94,11 +90,6 @@ class NewsActivity : AppCompatActivity() {
     }
     
     private fun setupObservers() {
-        viewModel.newsList.observe(this) { newsList ->
-            // Update news list in fragments
-            (binding.viewPager.adapter as? NewsPagerAdapter)?.updateNews(newsList)
-        }
-        
         viewModel.isLoading.observe(this) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
@@ -152,35 +143,23 @@ class NewsActivity : AppCompatActivity() {
     
     private fun activateChatMode() {
         isChatMode = true
-        // Hide news UI elements
         binding.tabLayout.visibility = View.GONE
         binding.viewPager.visibility = View.GONE
-        
-        // Show chat UI elements
-        // This would be replaced with actual chat fragment loading
         showChatInterface()
-        
-        // Reset auto-lock timer
         autoLockTimer?.cancel()
         setupAutoLock()
     }
     
     private fun deactivateChatMode() {
         isChatMode = false
-        // Show news UI elements
         binding.tabLayout.visibility = View.VISIBLE
         binding.viewPager.visibility = View.VISIBLE
-        
-        // Hide chat UI elements
         hideChatInterface()
-        
-        // Clear search
         binding.searchView.setQuery("", false)
     }
     
     private fun showChatInterface() {
         // TODO: Implement chat interface loading
-        // This would load the chat fragment or activity
     }
     
     private fun hideChatInterface() {
@@ -189,19 +168,16 @@ class NewsActivity : AppCompatActivity() {
     
     private fun revealChatContent() {
         // TODO: Implement chat content reveal logic
-        // This would decrypt and display actual chat messages
     }
     
     override fun onResume() {
         super.onResume()
-        // Reset auto-lock timer when activity resumes
         autoLockTimer?.cancel()
         setupAutoLock()
     }
     
     override fun onPause() {
         super.onPause()
-        // Auto-lock when activity goes to background
         if (isChatMode) {
             deactivateChatMode()
         }
