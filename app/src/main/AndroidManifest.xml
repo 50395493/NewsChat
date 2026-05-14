@@ -64,6 +64,11 @@
             android:exported="false"
             android:theme="@style/Theme.StealthNewsChat.NoActionBar" />
 
+        <activity
+            android:name=".ui.news.NewsDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.StealthNewsChat.NoActionBar" />
+
         <service
             android:name=".service.NotificationService"
             android:enabled="true"
