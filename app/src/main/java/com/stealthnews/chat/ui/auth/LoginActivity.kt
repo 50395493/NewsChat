@@ -44,8 +44,9 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.tvGoToRegister.setOnClickListener {
-            // 跳转到注册页（可选实现）
+        binding.tvGoToRegister?.setOnClickListener {
+            // 跳转到注册页
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 }
