@@ -3,7 +3,6 @@ package com.stealthnews.chat.ui.news.fragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.stealthnews.chat.R
 import com.stealthnews.chat.data.model.NewsItem
 import com.stealthnews.chat.databinding.ItemNewsBinding
 import java.text.SimpleDateFormat
@@ -20,9 +19,9 @@ class NewsListAdapter(
 
         fun bind(news: NewsItem) {
             binding.tvTitle.text = news.title
-            binding.tvSummary.text = news.summary
+            binding.tvSummary.text = news.description
             binding.tvCategory.text = news.category
-            binding.tvTime.text = getTimeAgo(news.publishTime)
+            binding.tvTime.text = getTimeAgo(news.publishedAt)
         }
 
         private fun getTimeAgo(timestamp: Long): String {
