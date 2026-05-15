@@ -83,7 +83,7 @@ class ChatDetailActivity : AppCompatActivity() {
                 senderId = currentUserId,
                 receiverId = "", // 单聊不需要
                 content = content,
-                messageType = com.stealthnews.chat.data.model.MessageType.TEXT,
+                messageType = "text",
                 timestamp = System.currentTimeMillis()
             )
             
@@ -116,7 +116,7 @@ class ChatDetailActivity : AppCompatActivity() {
                 senderId = "friend",
                 receiverId = currentUserId,
                 content = getRandomReply(),
-                messageType = com.stealthnews.chat.data.model.MessageType.TEXT,
+                messageType = "text",
                 timestamp = System.currentTimeMillis()
             )
             database.chatMessageDao().insertMessage(replyMessage)

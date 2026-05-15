@@ -2,15 +2,8 @@ package com.stealthnews.chat.data.local.database
 
 import androidx.room.TypeConverter
 import com.stealthnews.chat.data.model.Friend
-import com.stealthnews.chat.data.model.MessageType
 
 class Converters {
-    
-    @TypeConverter
-    fun fromMessageType(value: MessageType): String = value.name
-    
-    @TypeConverter
-    fun toMessageType(value: String): MessageType = MessageType.valueOf(value)
     
     @TypeConverter
     fun fromFriendStatus(value: Friend.FriendStatus): String = value.name

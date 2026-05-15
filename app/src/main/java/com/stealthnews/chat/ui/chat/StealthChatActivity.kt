@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.stealthnews.chat.R
 import com.stealthnews.chat.data.local.database.AppDatabase
+import com.stealthnews.chat.data.local.entity.Conversation
 import com.stealthnews.chat.data.model.Friend
-import com.stealthnews.chat.data.model.MessageType
 import com.stealthnews.chat.databinding.ActivityStealthChatBinding
 import com.stealthnews.chat.util.PreferenceManager
 import kotlinx.coroutines.flow.collectLatest
@@ -74,9 +74,12 @@ class StealthChatActivity : AppCompatActivity() {
     }
 
     private fun setupAdapters() {
-        conversationAdapter = ConversationAdapter { conversation ->
-            // 打开聊天详情
-            openChatDetail(conversation.id, conversation.title)
+        val currentUserId = preferenceManager.getUserId() ?: ""
+        conversationAdapter = ConversationAdapter(currentUserId) { conversation ->
+            // 从 participantIds 提取对方ID作为标题
+            val participants = conversation.participantIds.split(",")
+            val friendId = participants.find { it != currentUserId } ?: "未知"
+            openChatDetail(conversation.id, friendId)
         }
         
         friendAdapter = FriendAdapter(
@@ -144,9 +147,9 @@ class StealthChatActivity : AppCompatActivity() {
     private fun loadConversations() {
         lifecycleScope.launch {
             database.conversationDao().getAllConversations().collectLatest { conversations ->
-                val filtered = conversations.filter { it.type == com.stealthnews.chat.data.model.Conversation.ConversationType.PRIVATE }
-                conversationAdapter.submitList(filtered)
-                updateEmptyState(filtered.size, getString(R.string.stealth_no_messages))
+                // entity.Conversation 没有 type 字段，直接显示所有
+                conversationAdapter.submitList(conversations)
+                updateEmptyState(conversations.size, getString(R.string.stealth_no_messages))
             }
         }
     }
@@ -177,12 +180,13 @@ class StealthChatActivity : AppCompatActivity() {
             } else {
                 // 创建新对话
                 val newConversationId = UUID.randomUUID().toString()
-                val newConversation = com.stealthnews.chat.data.local.entity.Conversation(
+                val userId = preferenceManager.getUserId() ?: ""
+                val newConversation = Conversation(
                     id = newConversationId,
-                    type = com.stealthnews.chat.data.model.Conversation.ConversationType.PRIVATE,
-                    title = friendName,
-                    participantIds = listOf(preferenceManager.getUserId() ?: "", friendId),
-                    isEncrypted = true
+                    participantIds = "$userId,$friendId",
+                    lastMessage = null,
+                    lastMessageTime = System.currentTimeMillis(),
+                    unreadCount = 0
                 )
                 database.conversationDao().insertConversation(newConversation)
                 openChatDetail(newConversationId, friendName)

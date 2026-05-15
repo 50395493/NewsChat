@@ -14,6 +14,7 @@ import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 class ConversationAdapter(
+    private val currentUserId: String,
     private val onItemClick: (Conversation) -> Unit
 ) : ListAdapter<Conversation, ConversationAdapter.ConversationViewHolder>(ConversationDiffCallback()) {
 
@@ -44,8 +45,11 @@ class ConversationAdapter(
         }
 
         fun bind(conversation: Conversation) {
-            binding.tvName.text = conversation.title
-            binding.tvLastMessage.text = conversation.lastMessageContent ?: "暂无消息"
+            // 从 participantIds 提取对方ID并显示
+            val participants = conversation.participantIds.split(",")
+            val friendId = participants.find { it != currentUserId } ?: "未知"
+            binding.tvName.text = friendId
+            binding.tvLastMessage.text = conversation.lastMessage ?: "暂无消息"
             binding.tvTime.text = getTimeAgo(conversation.lastMessageTime)
             
             if (conversation.unreadCount > 0) {

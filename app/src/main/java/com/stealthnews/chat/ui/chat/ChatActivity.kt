@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.stealthnews.chat.data.local.database.AppDatabase
 import com.stealthnews.chat.data.local.dao.ChatMessageDao
 import com.stealthnews.chat.databinding.ActivityChatBinding
+import com.stealthnews.chat.util.PreferenceManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,12 +16,14 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
     private lateinit var chatMessageDao: ChatMessageDao
     private lateinit var adapter: ChatAdapter
+    private lateinit var preferenceManager: PreferenceManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        preferenceManager = PreferenceManager(this)
         val database = AppDatabase.getInstance(this)
         chatMessageDao = database.chatMessageDao()
 
@@ -36,7 +39,8 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        adapter = ChatAdapter()
+        val currentUserId = preferenceManager.getUserId() ?: ""
+        adapter = ChatAdapter(currentUserId)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
     }
