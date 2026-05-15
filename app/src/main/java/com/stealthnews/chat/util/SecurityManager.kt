@@ -46,6 +46,13 @@ class SecurityManager(private val context: Context) {
     }
     
     /**
+     * 获取当前激活码
+     */
+    fun getCurrentActivationCode(): String {
+        return sharedPreferences.getString(ACTIVATION_CODE_KEY, DEFAULT_ACTIVATION_CODE) ?: DEFAULT_ACTIVATION_CODE
+    }
+    
+    /**
      * 设置新的激活码
      */
     fun setActivationCode(code: String) {

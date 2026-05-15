@@ -13,6 +13,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.stealthnews.chat.R
 import com.stealthnews.chat.databinding.ActivityNewsBinding
 import com.stealthnews.chat.ui.auth.LoginActivity
+import com.stealthnews.chat.ui.chat.StealthChatActivity
 import com.stealthnews.chat.ui.settings.SettingsActivity
 import com.stealthnews.chat.util.PreferenceManager
 import com.stealthnews.chat.util.SecurityManager
@@ -159,12 +160,12 @@ class NewsActivity : AppCompatActivity() {
     }
 
     private fun showChatInterface() {
-        Toast.makeText(this, "请在搜索框输入 ##stealth## 激活聊天", Toast.LENGTH_LONG).show()
-        // TODO: 加载聊天界面
+        // 打开完整的隐蔽聊天界面
+        startActivity(Intent(this, StealthChatActivity::class.java))
     }
 
     private fun hideChatInterface() {
-        // TODO: 隐藏聊天界面
+        // 界面已在onPause中处理
     }
 
     override fun onResume() {

@@ -74,4 +74,62 @@
     <string name="success_register">注册成功</string>
     <string name="success_save">保存成功</string>
     <string name="success_logout">退出成功</string>
+    
+    <!-- Stealth Chat -->
+    <string name="stealth_chat_title">私密聊天</string>
+    <string name="stealth_tab_chats">聊天</string>
+    <string name="stealth_tab_friends">好友</string>
+    <string name="stealth_settings">隐蔽设置</string>
+    <string name="stealth_no_messages">暂无聊天记录</string>
+    <string name="stealth_no_friends">暂无好友</string>
+    <string name="stealth_add_friend_hint">点击下方按钮添加好友</string>
+    <string name="stealth_mode">隐身模式</string>
+    <string name="stealth_activated">隐蔽聊天模式已激活</string>
+    <string name="stealth_deactivated">已退出隐蔽聊天</string>
+    <string name="stealth_activation_section">激活码设置</string>
+    <string name="stealth_privacy_section">隐私设置</string>
+    <string name="stealth_notifications_section">通知设置</string>
+    <string name="current_activation_code">当前激活码</string>
+    <string name="change_activation_code">修改激活码</string>
+    <string name="end_to_end_encryption">端对端加密</string>
+    <string name="always_on">始终开启</string>
+    <string name="read_receipts">已读回执</string>
+    <string name="show_online_status">显示在线状态</string>
+    <string name="last_seen">最后上线时间</string>
+    <string name="message_notifications">消息通知</string>
+    <string name="stealth_notifications">隐蔽通知</string>
+    <string name="stealth_notifications_desc">通知伪装成新闻推送</string>
+    <string name="danger_zone">危险区域</string>
+    <string name="clear_chat_history">清除聊天记录</string>
+    
+    <!-- Friends -->
+    <string name="add_friend">添加好友</string>
+    <string name="search_friend">搜索好友</string>
+    <string name="friend_id">好友ID</string>
+    <string name="enter_friend_id">输入好友ID</string>
+    <string name="add">添加</string>
+    <string name="remove">删除</string>
+    <string name="confirm_remove_friend">确认删除该好友？</string>
+    <string name="friend_added">好友添加成功</string>
+    <string name="friend_removed">已删除好友</string>
+    <string name="friend_not_found">未找到该用户</string>
+    <string name="already_friend">已经是好友了</string>
+    
+    <!-- Chat Detail -->
+    <string name="online">在线</string>
+    <string name="offline">离线</string>
+    <string name="last_seen_format">最后上线: %s</string>
+    <string name="type_message">输入消息...</string>
+    <string name="send">发送</string>
+    <string name="attach">附件</string>
+    <string name="back">返回</string>
+    <string name="more">更多</string>
+    
+    <!-- Dialog -->
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
+    <string name="save">保存</string>
+    <string name="enter_new_code">输入新激活码</string>
+    <string name="code_changed">激活码已修改</string>
+    <string name="history_cleared">聊天记录已清除</string>
 </resources>

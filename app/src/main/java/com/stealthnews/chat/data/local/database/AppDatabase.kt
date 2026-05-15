@@ -4,22 +4,27 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.stealthnews.chat.data.local.dao.ChatMessageDao
 import com.stealthnews.chat.data.local.dao.ConversationDao
+import com.stealthnews.chat.data.local.dao.FriendDao
 import com.stealthnews.chat.data.local.dao.UserDao
 import com.stealthnews.chat.data.local.entity.ChatMessage
 import com.stealthnews.chat.data.local.entity.Conversation
 import com.stealthnews.chat.data.local.entity.User
+import com.stealthnews.chat.data.model.Friend
 
 @Database(
-    entities = [User::class, ChatMessage::class, Conversation::class],
-    version = 1,
+    entities = [User::class, ChatMessage::class, Conversation::class, Friend::class],
+    version = 2,
     exportSchema = false
 )
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun chatMessageDao(): ChatMessageDao
     abstract fun conversationDao(): ConversationDao
+    abstract fun friendDao(): FriendDao
 
     companion object {
         @Volatile
@@ -31,7 +36,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "chat_database"
-                ).build()
+                )
+                .fallbackToDestructiveMigration()
+                .build()
                 INSTANCE = instance
                 instance
             }

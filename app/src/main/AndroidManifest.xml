@@ -69,6 +69,21 @@
             android:exported="false"
             android:theme="@style/Theme.StealthNewsChat.NoActionBar" />
 
+        <activity
+            android:name=".ui.chat.StealthChatActivity"
+            android:exported="false"
+            android:theme="@style/Theme.StealthNewsChat.NoActionBar" />
+
+        <activity
+            android:name=".ui.chat.StealthSettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.StealthNewsChat.NoActionBar" />
+
+        <activity
+            android:name=".ui.chat.ChatDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.StealthNewsChat.NoActionBar" />
+
         <service
             android:name=".service.NotificationService"
             android:enabled="true"
