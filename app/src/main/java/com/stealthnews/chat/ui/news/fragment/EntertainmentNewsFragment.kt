@@ -5,15 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stealthnews.chat.R
-import com.stealthnews.chat.data.model.NewsItem
+import com.stealthnews.chat.ui.news.NewsViewModel
 
 class EntertainmentNewsFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: NewsListAdapter
+    private lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,19 +27,17 @@ class EntertainmentNewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        
+        viewModel = ViewModelProvider(requireActivity())[NewsViewModel::class.java]
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = NewsListAdapter(getMockNews())
+        adapter = NewsListAdapter(emptyList())
         recyclerView.adapter = adapter
-    }
-
-    private fun getMockNews(): List<NewsItem> {
-        return listOf(
-            NewsItem("11", "《流浪地球3》定档春节，刘慈欣担任编剧", "备受期待的科幻巨制《流浪地球3》正式宣布定档2026年春节，阵容全面升级。", "https://picsum.photos/400/210", "影视资讯", System.currentTimeMillis(), "娱乐"),
-            NewsItem("12", "周杰伦新专辑《最伟大的作品2》发布", "时隔三年，周杰伦携新专辑回归，首支单曲24小时播放量破亿。", "https://picsum.photos/400/211", "音乐之声", System.currentTimeMillis() - 3600000, "娱乐"),
-            NewsItem("13", "戛纳电影节：中国影片《繁花》获金棕榈", "王家卫执导的《繁花》在第78届戛纳电影节获得最佳影片大奖。", "https://picsum.photos/400/212", "国际电影节", System.currentTimeMillis() - 7200000, "娱乐"),
-            NewsItem("14", "Netflix热门剧集《鱿鱼游戏2》续订", "现象级剧集《鱿鱼游戏》第二季正式续订，将于明年与观众见面。", "https://picsum.photos/400/213", "流媒体观察", System.currentTimeMillis() - 10800000, "娱乐"),
-            NewsItem("15", "TFBOYS十周年演唱会官宣", "TFBOYS正式官宣十周年演唱会，三小只将再次同台，引发粉丝热议。", "https://picsum.photos/400/214", "娱乐周刊", System.currentTimeMillis() - 14400000, "娱乐")
-        )
+        
+        // 观察ViewModel的新闻数据
+        viewModel.news.observe(viewLifecycleOwner) { newsList ->
+            val entertainmentNews = newsList.filter { it.category == "娱乐" }
+            adapter.updateData(entertainmentNews)
+        }
     }
 }

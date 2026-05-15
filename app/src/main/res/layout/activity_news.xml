@@ -54,7 +54,12 @@
             android:layout_height="48dp"
             android:layout_centerVertical="true"
             android:background="@drawable/search_background"
-            android:queryHint="@string/news_search_hint" />
+            android:queryHint="@string/news_search_hint"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
+            app:submitBackground="@android:color/transparent" />
 
     </RelativeLayout>
 
